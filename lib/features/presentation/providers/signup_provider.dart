@@ -10,7 +10,7 @@ import 'package:movieapp/features/domain/usecases/googlesign_usecase.dart';
 import 'package:movieapp/features/domain/usecases/signin_usecase.dart';
 import 'package:movieapp/features/domain/usecases/signout_usecase.dart';
 import 'package:movieapp/features/domain/usecases/signup_usecase.dart';
-import 'package:movieapp/features/presentation/pages/homrpage_pages.dart';
+import 'package:movieapp/features2/presentation/pages/homepage_pages.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'signup_provider.g.dart';
 
@@ -29,7 +29,7 @@ class Authentication extends _$Authentication {
     try {
       await SignupUsecase(repository: repository)(email, password);
       await emailVerification();
-      Future.sync(() => context.push(MyWidget.routepath));
+      Future.sync(() => context.push(Homepage.routepath));
     } on Baseexeption catch (e) {
       Future.sync(() => SnackbarUtils.showSnackbarMessage(context, e.message));
     }
@@ -38,7 +38,7 @@ class Authentication extends _$Authentication {
   Future<void> signinWithEmail(String email, String password) async {
     try {
       await Signinusecase(repository: repository)(email, password);
-      Future.sync(() => context.push(MyWidget.routepath));
+      Future.sync(() => context.push(Homepage.routepath));
     } on Baseexeption catch (e) {
       Future.sync(() => SnackbarUtils.showSnackbarMessage(context, e.message));
     }
@@ -59,7 +59,7 @@ class Authentication extends _$Authentication {
   Future<void> signInwithGoogle() async {
     try {
       await GoogleverifyUsecase(repository: repository)();
-      Future.sync(() => context.push(MyWidget.routepath));
+      Future.sync(() => context.push(Homepage.routepath));
     } on Baseexeption catch (e) {
       Future.sync(() => SnackbarUtils.showSnackbarMessage(context, e.message));
     }

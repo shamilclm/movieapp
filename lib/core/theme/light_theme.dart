@@ -14,7 +14,7 @@ final _lightTheme = ThemeData(
     AppColorExtension(
       primary: Colors.yellow,
       secondary: AppColorPalette.yellow100,
-      text: AppColorPalette.grey900,
+      text: const Color.fromARGB(255, 12, 9, 9),
       textInverse: Colors.white,
       textSubtle: AppColorPalette.grey700,
       textSubtlest: AppColorPalette.grey500,
@@ -33,5 +33,3 @@ final _lightTheme = ThemeData(
 ThemeData lightTheme(LightThemeRef ref) {
   return _lightTheme;
 }
-
-

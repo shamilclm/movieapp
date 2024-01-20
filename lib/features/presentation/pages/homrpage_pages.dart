@@ -5,7 +5,7 @@ import 'package:movieapp/features/presentation/pages/login_pages.dart';
 import 'package:movieapp/features/presentation/providers/signup_provider.dart';
 
 class MyWidget extends ConsumerWidget {
-  static const routepath = '/';
+  // static const routepath = '/';
   const MyWidget({super.key});
 
   @override

@@ -1,15 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
-import 'package:movieapp/features/presentation/pages/homrpage_pages.dart';
 import 'package:movieapp/features/presentation/pages/login_pages.dart';
 import 'package:movieapp/features/presentation/pages/phone_page.dart';
 import 'package:movieapp/features/presentation/pages/signup_pages.dart';
+import 'package:movieapp/features2/presentation/pages/homepage_pages.dart';
 
-final router = GoRouter(initialLocation: MyWidget.routepath, routes: [
+final router = GoRouter(initialLocation: Homepage.routepath, routes: [
   GoRoute(
-    path: MyWidget.routepath,
+    path: Homepage.routepath,
     name: 'homepage',
-    builder: (context, state) => const MyWidget(),
+    builder: (context, state) => const Homepage(),
     redirect: (context, state) {
       final user = FirebaseAuth.instance.currentUser;
       if (user == null || !user.emailVerified) {
