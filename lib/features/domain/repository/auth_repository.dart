@@ -10,4 +10,6 @@ abstract class Authrepository {
   Future<void> emailVerification();
   Future<void> signInwithGoogle();
   Future<void> resetPassword(String email);
+  Future<(String, int?)> loginphone(String phone);
+  Future<void> verifyOtp(String verification, String otp);
 }

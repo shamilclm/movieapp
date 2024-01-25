@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:movieapp/core/widgets/textfield_widgets.dart';
 
-class Myphone extends StatelessWidget {
+class Myphone extends HookConsumerWidget {
   static const routepath = '/phone';
-  const Myphone({super.key});
+  final phonecontroler = useTextEditingController();
+  Myphone({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(),
       body: Column(
@@ -21,6 +25,11 @@ class Myphone extends StatelessWidget {
               ),
             ),
           ),
+          Textfield(
+              text: "enter number",
+              icon: Icon(Icons.add),
+              controller: phonecontroler),
+          ElevatedButton(onPressed: () {}, child: Text("Send otp"))
         ],
       ),
     );

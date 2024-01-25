@@ -1,7 +1,10 @@
 // ignore_for_file: use_build_context_synchronously, implementation_imports
 
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:movieapp/core/exeption/auth/signin_exeption.dart';
 
 import 'package:movieapp/features/data/darasource/firebase_datasource.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -18,6 +21,16 @@ class FirebaseAuthMethodsImpl implements FireBaseAuthMethods {
   }) {
     return _auth.createUserWithEmailAndPassword(
         email: email, password: password);
+    //  try {
+    //   await _auth.createUserWithEmailAndPassword(email: email, password: password);
+    // } on FirebaseAuthException catch (e) {
+    //   if (e.code == 'weak-password') {
+    //     throw Signupexeption('Password is weak', 'weak password');
+    //   } else if (e.code == 'email-already-in-use') {
+    //     throw Signupexeption(
+    //         'The account already exixsts', 'account already exists');
+    //   }
+    // }
   }
 
   @override
@@ -52,6 +65,41 @@ class FirebaseAuthMethodsImpl implements FireBaseAuthMethods {
   @override
   Future<void> forgetPassword(String email) async {
     await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  }
+
+  @override
+  Future<(String, int?)> loginphone(String phone, [int? resendToken]) async {
+    try {
+      final verificationIdCompleter = Completer<String>();
+      final resendTokenCompleter = Completer<int?>();
+      await FirebaseAuth.instance.verifyPhoneNumber(
+        forceResendingToken: resendToken,
+        phoneNumber: phone,
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          await _auth.signInWithCredential(credential);
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          if (e.code == 'invalid-phone-number') {}
+        },
+        codeSent: (String? verificationId, int? resendToken) async {
+          verificationIdCompleter.complete(verificationId);
+          resendTokenCompleter.complete(resendToken);
+        },
+        codeAutoRetrievalTimeout: (String verificationId) async {},
+      );
+      final verificationId = await verificationIdCompleter.future;
+      final newResendToken = await resendTokenCompleter.future;
+      return (verificationId, newResendToken);
+    } on Exception {
+      throw SigninExeption('cannot login', 'please try again');
+    }
+  }
+
+  @override
+  Future<void> verifyOtp(String verificationId, String otp) async {
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verificationId, smsCode: otp);
+    await _auth.signInWithCredential(credential);
   }
 }
 

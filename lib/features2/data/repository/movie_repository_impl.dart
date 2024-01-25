@@ -19,7 +19,10 @@ class MovieRepositoryImpl extends MovieRepository {
             originalTitle: result.originalTitle,
             overview: result.overview,
             posterPath: result.posterPath,
+            releaseDate: result.releaseDate,
+            originalLanguage: result.originalLanguage,
             title: result.title,
+            backdropPath: result.backdropPath,
             voteAverage: result.voteAverage)
     ];
     return results;

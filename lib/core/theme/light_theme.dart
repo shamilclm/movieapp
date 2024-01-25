@@ -17,7 +17,7 @@ final _lightTheme = ThemeData(
       text: const Color.fromARGB(255, 12, 9, 9),
       textInverse: Colors.white,
       textSubtle: AppColorPalette.grey700,
-      textSubtlest: AppColorPalette.grey500,
+      textSubtlest: const Color.fromARGB(255, 220, 206, 206),
       backgroundDanger: Colors.red,
     ),
     AppSpaceExtension.fromBaseSpace(8),

@@ -1,5 +1,6 @@
 class Movies {
   static const title = 'MOVIES';
+  static const trailer = 'WATCH TRAILER';
   static const title1 = 'Trending Movies';
   static const title2 = 'Top Related Movies';
   static const apitoken =

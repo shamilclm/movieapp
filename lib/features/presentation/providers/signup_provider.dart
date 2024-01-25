@@ -20,10 +20,9 @@ class Authentication extends _$Authentication {
   @override
   void build(BuildContext context) {
     repository = ref.read(authRepositoryProvider);
-    ref.onDispose(dispose);
   }
 
-  void dispose() {}
+  // void dispose() {}
 
   Future<void> signUpWithEmail(String email, String password) async {
     try {
@@ -72,4 +71,26 @@ class Authentication extends _$Authentication {
       Future.sync(() => SnackbarUtils.showSnackbarMessage(context, e.message));
     }
   }
+
+  // Future<void> signInWithPhone(BuildContext context, String phone) async {
+  //   try {
+  //     final verificationData =
+  //         await Loginphonenusecase(repository: repository)(phone);
+  //     state = AuthState(
+  //         verificationId: verificationData.$1,
+  //         resendToken: verificationData.$2);
+  //     Future.sync(() => context.push(Otp.routepath));
+  //   } on Baseexeption catch (e) {
+  //     Future.sync(() => SnackbarUtils.showSnackbarMessage(context, e.message));
+  //   }
+  // }
+
+  // Future<void> verifyOtp(BuildContext context, String otp) async {
+  //   try {
+  //     await VerifyOtpusecase(repository: repository)(state.,otp);
+  //     Future.sync(() => context.go(Homepage.routepath));
+  //   } on Baseexeption catch (e) {
+  //     Future.sync(() => SnackbarUtils.showSnackbarMessage(context, e.message));
+  //   }
+  // }
 }
