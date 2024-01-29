@@ -34,7 +34,10 @@ class Viewpage extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(40),
                     child: Container(
-                      color: AppTheme.of(context).colors.textSubtle,
+                      color: AppTheme.of(context)
+                          .colors
+                          .textSubtle
+                          .withOpacity(.70),
                       child: IconButton(
                           onPressed: () {
                             context.push(Homepage.routepath);
@@ -129,9 +132,12 @@ class Viewpage extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: AppTheme.of(context).spaces.space_400,
+            height: AppTheme.of(context).spaces.space_300,
           ),
-          const Elevatedbutton()
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Elevatedbutton(),
+          )
         ],
       ),
     );

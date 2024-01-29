@@ -15,6 +15,14 @@ class ApiServiceDataSourceImpl extends ApiServiceDataSourse {
         await dio.get('https://api.themoviedb.org/3/discover/movie');
     return MovieModel.fromJson(response.data);
   }
+
+  @override
+  Future<MovieModel> trendingMovies() async {
+    dio.options.headers['Authorization'] = 'Bearer $token';
+    Response response =
+        await dio.get('https://api.themoviedb.org/3/movie/top_rated');
+    return MovieModel.fromJson(response.data);
+  }
 }
 
 @riverpod

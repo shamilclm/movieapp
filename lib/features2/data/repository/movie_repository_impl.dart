@@ -27,6 +27,25 @@ class MovieRepositoryImpl extends MovieRepository {
     ];
     return results;
   }
+
+  @override
+  Future<List<MovieEntity>> trndingMovie() async {
+    final datas = await dataSourse.trendingMovies();
+    late List<MovieEntity> results;
+    results = [
+      for (final result in datas.results)
+        MovieEntity(
+            originalTitle: result.originalTitle,
+            overview: result.overview,
+            posterPath: result.posterPath,
+            releaseDate: result.releaseDate,
+            originalLanguage: result.originalLanguage,
+            title: result.title,
+            backdropPath: result.backdropPath,
+            voteAverage: result.voteAverage)
+    ];
+    return results;
+  }
 }
 
 @riverpod

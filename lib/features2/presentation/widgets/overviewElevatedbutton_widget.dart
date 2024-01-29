@@ -9,15 +9,24 @@ class Elevatedbutton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
-            minimumSize: Size(300, 60),
+            minimumSize: Size(20, 60),
             backgroundColor: AppTheme.of(context).colors.backgroundDanger),
         onPressed: () {},
-        child: Text(
-          Movies.trailer,
-          style: AppTheme.of(context)
-              .typography
-              .h600
-              .copyWith(color: AppTheme.of(context).colors.textInverse),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.play_arrow,
+              color: AppTheme.of(context).colors.textInverse,
+            ),
+            Text(
+              Movies.trailer,
+              style: AppTheme.of(context)
+                  .typography
+                  .h500
+                  .copyWith(color: AppTheme.of(context).colors.textInverse),
+            ),
+          ],
         ));
   }
 }

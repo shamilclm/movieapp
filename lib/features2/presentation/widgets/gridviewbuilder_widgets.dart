@@ -29,7 +29,7 @@ class GridviewList extends StatelessWidget {
                 borderRadius: BorderRadius.circular(30),
                 image: DecorationImage(
                     image: NetworkImage(
-                      image + list[index].backdropPath,
+                      image + list[index].posterPath,
                     ),
                     fit: BoxFit.cover)),
           ),
