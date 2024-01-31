@@ -11,7 +11,7 @@ final class TrendingMovieUsecase {
     try {
       return await repository.trndingMovie();
     } catch (e) {
-      throw MoviesExeption("Error while fetching");
+      throw MoviesExeption(e.toString());
     }
   }
 }

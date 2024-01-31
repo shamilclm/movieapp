@@ -19,9 +19,8 @@ class Mybutton extends ConsumerWidget {
             minimumSize: const Size(200, 40),
             backgroundColor: AppTheme.of(context).colors.backgroundDanger),
         onPressed: () {
-          ref
-              .read(authenticationProvider(context).notifier)
-              .signinWithEmail(emailcontroler.text, passwordcontroler.text);
+          ref.read(authenticationProvider.notifier).signinWithEmail(
+              context, emailcontroler.text, passwordcontroler.text);
         },
         child: Text(
           Login.lbtn,

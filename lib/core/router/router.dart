@@ -15,7 +15,7 @@ final router = GoRouter(initialLocation: Homepage.routepath, routes: [
     builder: (context, state) => const Homepage(),
     redirect: (context, state) {
       final user = FirebaseAuth.instance.currentUser;
-      if (user == null || !user.emailVerified) {
+      if (user == null || !user.emailVerified && user.phoneNumber == null) {
         return MyLogin.routepath;
       }
       return null;

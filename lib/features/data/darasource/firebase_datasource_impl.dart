@@ -71,7 +71,7 @@ class FirebaseAuthMethodsImpl implements FireBaseAuthMethods {
   Future<(String, int?)> loginphone(String phone, [int? resendToken]) async {
     try {
       final verificationIdCompleter = Completer<String>();
-      final resendTokenCompleter = Completer<int?>();
+      final resendTokenCompleter = Completer<int>();
       await FirebaseAuth.instance.verifyPhoneNumber(
         forceResendingToken: resendToken,
         phoneNumber: phone,

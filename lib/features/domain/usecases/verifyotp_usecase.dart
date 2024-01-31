@@ -11,7 +11,7 @@ final class VerifyOtpusecase {
     }
     try {
       await repository.verifyOtp(verification, otp);
-    } on Exception catch (e) {
+    } on Exception {
       throw Baseexeption("enter your otp correctly");
     }
   }

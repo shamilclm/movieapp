@@ -12,7 +12,7 @@ class Googlebotton extends ConsumerWidget {
         minimumSize: const Size(40, 40),
       ),
       onPressed: () {
-        ref.read(authenticationProvider(context).notifier).signInwithGoogle();
+        ref.read(authenticationProvider.notifier).signInwithGoogle(context);
       },
       child: Image.asset(
         'assets/images/googlelogo.png',

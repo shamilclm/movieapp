@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movieapp/core/theme/app_theme.dart';
 import 'package:movieapp/features2/domain/entity/movie_entity.dart';
 import 'package:movieapp/features2/presentation/pages/homepage_pages.dart';
+import 'package:movieapp/features2/presentation/providers/movie_provider.dart';
 import 'package:movieapp/features2/presentation/widgets/overviewElevatedbutton_widget.dart';
 
-class Viewpage extends StatelessWidget {
+class Viewpage extends ConsumerWidget {
   final image = 'https://image.tmdb.org/t/p/w500';
   static const routepath = '/view';
   final MovieEntity entity;
@@ -13,7 +15,7 @@ class Viewpage extends StatelessWidget {
   const Viewpage({super.key, required this.entity});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: AppTheme.of(context).colors.text,
       body: Column(
@@ -38,14 +40,31 @@ class Viewpage extends StatelessWidget {
                           .colors
                           .textSubtle
                           .withOpacity(.70),
-                      child: IconButton(
-                          onPressed: () {
-                            context.push(Homepage.routepath);
-                          },
-                          icon: Icon(
-                            Icons.arrow_back_ios,
-                            color: AppTheme.of(context).colors.textInverse,
-                          )),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              context.push(Homepage.routepath);
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_ios,
+                              color: AppTheme.of(context).colors.textInverse,
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              ref
+                                  .read(movieProvider.notifier)
+                                  .addToFirestore(entity);
+                            },
+                            icon: Icon(
+                              Icons.favorite,
+                              color: AppTheme.of(context).colors.textInverse,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   )),
               Positioned(

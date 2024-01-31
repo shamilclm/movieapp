@@ -16,6 +16,7 @@ class MovieRepositoryImpl extends MovieRepository {
     results = [
       for (final result in datas.results)
         MovieEntity(
+            id: result.id,
             originalTitle: result.originalTitle,
             overview: result.overview,
             posterPath: result.posterPath,
@@ -35,6 +36,7 @@ class MovieRepositoryImpl extends MovieRepository {
     results = [
       for (final result in datas.results)
         MovieEntity(
+            id: result.id,
             originalTitle: result.originalTitle,
             overview: result.overview,
             posterPath: result.posterPath,
@@ -46,6 +48,21 @@ class MovieRepositoryImpl extends MovieRepository {
     ];
     return results;
   }
+
+  // @override
+  // Future<void> addtofirestore(MovieEntity entity) async {
+  //   final models = Firebasemodel(
+  //       id: entity.id,
+  //       originalTitle: entity.originalTitle,
+  //       overview: entity.overview,
+  //       posterPath: entity.posterPath,
+  //       releaseDate: entity.releaseDate,
+  //       originalLanguage: entity.originalLanguage,
+  //       title: entity.title,
+  //       backdropPath: entity.backdropPath,
+  //       voteAverage: entity.voteAverage);
+  //   await dataSourse.addtofirestore(models);
+  // }
 }
 
 @riverpod

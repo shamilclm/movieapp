@@ -12,8 +12,8 @@ class Forgetbutton extends ConsumerWidget {
     return TextButton(
         onPressed: () {
           ref
-              .read(authenticationProvider(context).notifier)
-              .passwordReset(controller.text);
+              .read(authenticationProvider.notifier)
+              .passwordReset(context, controller.text);
         },
         child: const Text(Logintext.bname));
   }

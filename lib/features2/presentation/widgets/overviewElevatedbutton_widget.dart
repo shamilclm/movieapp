@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movieapp/core/constants/movie_constants.dart';
 import 'package:movieapp/core/theme/app_theme.dart';
 
-class Elevatedbutton extends StatelessWidget {
+class Elevatedbutton extends ConsumerWidget {
   const Elevatedbutton({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
             minimumSize: Size(20, 60),

@@ -7,22 +7,20 @@ import 'package:movieapp/features/presentation/providers/signup_provider.dart';
 class Button extends ConsumerWidget {
   final TextEditingController emailcontroller;
   final TextEditingController passwordcontroller;
-  const Button({super.key,required this.emailcontroller,required this.passwordcontroller});
+  const Button(
+      {super.key,
+      required this.emailcontroller,
+      required this.passwordcontroller});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-      
-   
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
             minimumSize: Size(100, 40),
             backgroundColor: AppTheme.of(context).colors.textSubtle),
         onPressed: () {
-          
-          ref
-              .read(authenticationProvider(context).notifier)
-              .signUpWithEmail(emailcontroller.text, passwordcontroller.text);
-              
+          ref.read(authenticationProvider.notifier).signUpWithEmail(
+              context, emailcontroller.text, passwordcontroller.text);
         },
         child: Text(
           Signup.sitextbutton,
