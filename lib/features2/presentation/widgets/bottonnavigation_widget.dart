@@ -13,8 +13,8 @@ class Bottommavigation extends ConsumerWidget {
         color: Colors.black,
         animationDuration: Duration(milliseconds: 300),
         index: ref.watch(selected),
-        onTap: (index) {
-          ref.read(movieProvider.notifier).pageController.jumpToPage(index);
+        onTap: (value) {
+          ref.read(movieProvider.notifier).pageController.jumpToPage(value);
         },
         items: const [
           Icon(
@@ -23,6 +23,10 @@ class Bottommavigation extends ConsumerWidget {
           ),
           Icon(
             Icons.favorite,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.search,
             color: Colors.white,
           ),
         ]);

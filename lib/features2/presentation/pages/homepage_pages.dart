@@ -6,6 +6,7 @@ import 'package:movieapp/core/theme/app_theme.dart';
 import 'package:movieapp/features/presentation/pages/login_pages.dart';
 import 'package:movieapp/features/presentation/providers/signup_provider.dart';
 import 'package:movieapp/features2/presentation/pages/favoritepage_pages.dart';
+import 'package:movieapp/features2/presentation/pages/search_pages.dart';
 import 'package:movieapp/features2/presentation/providers/movie_provider.dart';
 import 'package:movieapp/features2/presentation/widgets/bottonnavigation_widget.dart';
 import 'package:movieapp/features2/presentation/widgets/caroslerslider_widget.dart';
@@ -60,7 +61,7 @@ class Homepage extends ConsumerWidget {
             )
           : switch (ref.watch(movieProvider)) {
               AsyncData(:final value) => PageView(
-                  controller: ref.read(movieProvider.notifier).pageController,
+                  controller: ref.watch(movieProvider.notifier).pageController,
                   onPageChanged: (value) {
                     ref.read(selected.notifier).state = value;
                   },
@@ -103,7 +104,8 @@ class Homepage extends ConsumerWidget {
                         ],
                       ),
                     ),
-                    Favoritepage(),
+                    const Favoritepage(),
+                    const Search(),
                   ],
                 ),
               AsyncError(:final error) => Center(

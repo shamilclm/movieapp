@@ -49,20 +49,25 @@ class MovieRepositoryImpl extends MovieRepository {
     return results;
   }
 
-  // @override
-  // Future<void> addtofirestore(MovieEntity entity) async {
-  //   final models = Firebasemodel(
-  //       id: entity.id,
-  //       originalTitle: entity.originalTitle,
-  //       overview: entity.overview,
-  //       posterPath: entity.posterPath,
-  //       releaseDate: entity.releaseDate,
-  //       originalLanguage: entity.originalLanguage,
-  //       title: entity.title,
-  //       backdropPath: entity.backdropPath,
-  //       voteAverage: entity.voteAverage);
-  //   await dataSourse.addtofirestore(models);
-  // }
+  @override
+  Future<List<MovieEntity>> searchMovies(String text) async {
+    final data = await dataSourse.searchMovies(text);
+    late List<MovieEntity> results;
+    results = [
+      for (final result in data.results)
+        MovieEntity(
+            originalTitle: result.originalTitle,
+            overview: result.overview,
+            posterPath: result.posterPath,
+            title: result.title,
+            id: result.id,
+            voteAverage: result.voteAverage,
+            backdropPath: result.backdropPath,
+            releaseDate: result.releaseDate,
+            originalLanguage: result.originalLanguage)
+    ];
+    return results;
+  }
 }
 
 @riverpod
