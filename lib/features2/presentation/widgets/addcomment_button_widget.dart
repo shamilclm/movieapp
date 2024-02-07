@@ -47,6 +47,7 @@ class Addcomment extends HookConsumerWidget {
                                               id: entity.id.toString()),
                                           entity.title,
                                         );
+                                    commentcontroller.clear();
                                   },
                                   icon: Icon(Icons.send)),
                               border: OutlineInputBorder(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movieapp/core/constants/movie_constants.dart';
 import 'package:movieapp/core/theme/app_theme.dart';
 import 'package:movieapp/features/presentation/pages/login_pages.dart';
@@ -15,13 +17,15 @@ import 'package:movieapp/features2/presentation/widgets/listviewbuilder_widget.d
 import 'package:movieapp/features2/presentation/widgets/text_widgets.dart';
 import 'package:movieapp/features2/presentation/widgets/upcomig_widget.dart';
 
-class Homepage extends ConsumerWidget {
+class Homepage extends HookConsumerWidget {
   final image = 'https://image.tmdb.org/t/p/w500';
   static const routepath = '/';
   const Homepage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final gPageController = usePageController();
+
     return Scaffold(
       backgroundColor: AppTheme.of(context).colors.text,
       // appBar: const PreferredSize(
@@ -61,7 +65,7 @@ class Homepage extends ConsumerWidget {
             )
           : switch (ref.watch(movieProvider)) {
               AsyncData(:final value) => PageView(
-                  controller: ref.watch(movieProvider.notifier).pageController,
+                  controller: gPageController,
                   onPageChanged: (value) {
                     ref.read(selected.notifier).state = value;
                   },
@@ -84,8 +88,8 @@ class Homepage extends ConsumerWidget {
                               width: MediaQuery.sizeOf(context).width,
                               height: 400,
                               child: GridviewList(
-                                  itemCount: value.trending.length,
-                                  list: value.trending)),
+                                  itemCount: value.movies.length,
+                                  list: value.movies)),
                           SizedBox(
                             height: AppTheme.of(context).spaces.space_125,
                           ),
@@ -129,7 +133,7 @@ class Homepage extends ConsumerWidget {
                   child: CircularProgressIndicator(),
                 ),
             },
-      bottomNavigationBar: const Bottommavigation(),
+      bottomNavigationBar: Bottommavigation(pageController: gPageController),
     );
   }
 }

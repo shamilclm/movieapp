@@ -1,6 +1,7 @@
 import 'package:movieapp/features2/data/datasource/apiservice_datasource_impl.dart';
 import 'package:movieapp/features2/data/datasource/apiservice_datsource.dart';
 import 'package:movieapp/features2/domain/entity/movie_entity.dart';
+import 'package:movieapp/features2/domain/entity/trailer_entity.dart';
 import 'package:movieapp/features2/domain/repository/movie_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'movie_repository_impl.g.dart';
@@ -65,6 +66,18 @@ class MovieRepositoryImpl extends MovieRepository {
             backdropPath: result.backdropPath,
             releaseDate: result.releaseDate,
             originalLanguage: result.originalLanguage)
+    ];
+    return results;
+  }
+
+  @override
+  Future<List<Trailerentity>> addTrailer(String id) async {
+    final data = await dataSourse.addTrailer(id);
+    late List<Trailerentity> results;
+
+    results = [
+      for (final model in data.results)
+        Trailerentity(type: model.type!, name: model.name!, key: model.key!)
     ];
     return results;
   }

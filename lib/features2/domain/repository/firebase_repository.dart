@@ -7,4 +7,5 @@ abstract class FirebaseRepository {
   Stream<List<MovieEntity>> getfavoriteMovies();
   Future<void> addComment(CommentEntity entity, String id);
   Stream<List<CommentEntity>> getComment(String id);
+  Future<void> delReview(String id);
 }

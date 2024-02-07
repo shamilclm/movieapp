@@ -14,6 +14,7 @@ class Search extends HookConsumerWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        backgroundColor: AppTheme.of(context).colors.text,
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +46,7 @@ class Search extends HookConsumerWidget {
                 style: AppTheme.of(context)
                     .typography
                     .h600
-                    .copyWith(color: Colors.black),
+                    .copyWith(color: Colors.white),
               ),
               Builder(
                 builder: (context) {

@@ -6,7 +6,7 @@ part 'state_provider.freezed.dart';
 class Stateprovider with _$Stateprovider {
   factory Stateprovider({
     required List<MovieEntity> movies,
-    required List<MovieEntity> trending,
+    // required List<MovieEntity> trending,
     required List<MovieEntity>? searchmovies,
   }) = _Stateprovider;
 }

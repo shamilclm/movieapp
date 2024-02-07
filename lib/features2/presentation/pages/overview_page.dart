@@ -7,6 +7,7 @@ import 'package:movieapp/features2/presentation/pages/homepage_pages.dart';
 import 'package:movieapp/features2/presentation/providers/movie_provider.dart';
 import 'package:movieapp/features2/presentation/widgets/addcomment_button_widget.dart';
 import 'package:movieapp/features2/presentation/widgets/overviewElevatedbutton_widget.dart';
+import 'package:movieapp/features2/presentation/widgets/trailer_widget.dart';
 
 class Viewpage extends ConsumerWidget {
   final image = 'https://image.tmdb.org/t/p/w500';
@@ -154,9 +155,9 @@ class Viewpage extends ConsumerWidget {
             SizedBox(
               height: AppTheme.of(context).spaces.space_300,
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Elevatedbutton(),
+            Container(
+              height: 150,
+              child: VideoWidget(entity: entity),
             ),
             SizedBox(
               height: AppTheme.of(context).spaces.space_300,

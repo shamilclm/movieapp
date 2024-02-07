@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movieapp/core/theme/app_theme.dart';
 import 'package:movieapp/features2/domain/entity/comment_entity.dart';
+import 'package:movieapp/features2/presentation/providers/movie_provider.dart';
 
 class ReviewWidget extends ConsumerWidget {
   final List<CommentEntity> value;
@@ -19,8 +20,13 @@ class ReviewWidget extends ConsumerWidget {
             value[index].comment,
             style: TextStyle(color: theme.colors.primary),
           ),
-          trailing:
-              IconButton(onPressed: () {}, icon: const Icon(Icons.delete)),
+          trailing: IconButton(
+              onPressed: () {
+                ref
+                    .read(movieProvider.notifier)
+                    .delReview(value[index].comment);
+              },
+              icon: const Icon(Icons.delete)),
         );
       },
     );

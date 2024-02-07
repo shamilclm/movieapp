@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:movieapp/core/constants/movie_constants.dart';
 import 'package:movieapp/features2/data/datasource/apiservice_datsource.dart';
 import 'package:movieapp/features2/data/models/movie_model.dart';
+import 'package:movieapp/features2/data/models/trailer_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'apiservice_datasource_impl.g.dart';
 
@@ -39,6 +40,14 @@ class ApiServiceDataSourceImpl extends ApiServiceDataSourse {
       },
     );
     return MovieModel.fromJson(response.data);
+  }
+
+  @override
+  Future<Movievedios> addTrailer(String id) async {
+    dio.options.headers['Authorization'] = 'Bearer $token';
+    final Response response =
+        await dio.get('https://api.themoviedb.org/3/movie/${id}/videos');
+    return Movievedios.fromJson(response.data);
   }
 }
 

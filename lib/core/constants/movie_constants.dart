@@ -3,6 +3,7 @@ class Movies {
   static const trailer = 'WATCH TRAILER';
   static const title1 = 'TopRated Movies';
   static const title3 = 'UpComing';
+  static const imagepath = 'https://image.tmdb.org/t/p/w500';
 
   static const title2 = 'Top Related Movies';
   static const apitoken =

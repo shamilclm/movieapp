@@ -26,6 +26,17 @@ class CommentDatasourceImpl extends CommentDatasource {
             toFirestore: (model, _) => model.toFirestore())
         .snapshots();
   }
+
+  @override
+  Future<void> delReview(String id) async {
+    await db
+        .collection(id)
+        .withConverter(
+            fromFirestore: CommentModel.fromFirestore,
+            toFirestore: (CommentModel model, _) => model.toFirestore())
+        .doc(id)
+        .delete();
+  }
 }
 
 @riverpod

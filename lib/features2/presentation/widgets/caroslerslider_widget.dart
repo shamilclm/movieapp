@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,7 +8,7 @@ import 'package:movieapp/features2/domain/entity/movie_entity.dart';
 import 'package:movieapp/features2/presentation/pages/overview_page.dart';
 
 class Caroslerslider extends ConsumerWidget {
-  final image = 'https://image.tmdb.org/t/p/w500';
+  final images = 'https://image.tmdb.org/t/p/w500';
   final List<MovieEntity> list;
   final int itemCount;
 
@@ -20,6 +22,14 @@ class Caroslerslider extends ConsumerWidget {
       child: CarouselSlider.builder(
           itemCount: itemCount,
           itemBuilder: (context, index, realIndex) {
+            final posterpathFile = File(list[index].posterPath);
+            late final ImageProvider image;
+            if (posterpathFile.existsSync()) {
+              image = FileImage(posterpathFile);
+            } else {
+              image = NetworkImage(images + list[index].posterPath);
+            }
+
             return InkWell(
               onTap: () => context.push(Viewpage.routepath, extra: list[index]),
               child: Container(
@@ -27,8 +37,7 @@ class Caroslerslider extends ConsumerWidget {
                 width: 300,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(40),
-                    image: DecorationImage(
-                        image: NetworkImage(image + list[index].posterPath))),
+                    image: DecorationImage(image: image)),
               ),
             );
           },

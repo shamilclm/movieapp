@@ -74,6 +74,11 @@ class FirebaseRepositoryimpl extends FirebaseRepository {
       ];
     }
   }
+
+  @override
+  Future<void> delReview(String id) async {
+    await commentDatasource.delReview(id);
+  }
 }
 
 @riverpod
